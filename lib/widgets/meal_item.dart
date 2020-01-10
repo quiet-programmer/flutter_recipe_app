@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../screens/meal_detail_screen.dart';
+
 import '../models/meal.dart';
 
 class MealItem extends StatelessWidget {
+  final String id;
   final String title;
   final String imageUrl;
   final int duration;
@@ -10,6 +13,7 @@ class MealItem extends StatelessWidget {
   final Affordability affordability;
 
   MealItem({
+    @required this.id,
     @required this.title,
     @required this.imageUrl,
     @required this.duration,
@@ -57,12 +61,19 @@ class MealItem extends StatelessWidget {
     }
   }
 
-  void selectMeal() {}
+  void selectMeal(BuildContext context) {
+
+    Navigator.of(context).pushNamed(
+      MealDetailScreen.routeName,
+      arguments: id,
+    );
+    
+  }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: selectMeal,
+      onTap: () => selectMeal(context),
       child: Card(
         elevation: 10.0,
         shape:
@@ -118,13 +129,10 @@ class MealItem extends StatelessWidget {
                       ),
                       Text(
                         "$duration min",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold
-                        ),
-                        ),
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ],
                   ),
-                  
                   Row(
                     children: <Widget>[
                       Icon(Icons.crop),
@@ -133,13 +141,10 @@ class MealItem extends StatelessWidget {
                       ),
                       Text(
                         complexityText,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold
-                        ),
-                        ),
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ],
                   ),
-
                   Row(
                     children: <Widget>[
                       Icon(Icons.attach_money),
@@ -148,10 +153,8 @@ class MealItem extends StatelessWidget {
                       ),
                       Text(
                         affordabilityText,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold
-                        ),
-                        ),
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ],
                   ),
                 ],

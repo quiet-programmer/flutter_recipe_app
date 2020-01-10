@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// setter for the meal
+
 enum Complexity {
   Simple,
   Challenging,
@@ -13,6 +15,7 @@ enum Affordability {
 }
 
 class Meal {
+
   final String id;
   final List<String> categories;
   final String title;
