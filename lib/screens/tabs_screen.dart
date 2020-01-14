@@ -7,6 +7,8 @@ import './favorites_screen.dart';
 
 import '../models/meal.dart';
 
+//class for the buttom tabs
+
 class TabsScreen extends StatefulWidget {
   final List<Meal> favoriteMeals;
 
