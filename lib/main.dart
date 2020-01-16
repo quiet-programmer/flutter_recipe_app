@@ -16,6 +16,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+// map strings with booleans to validate the selected value.
   Map<String, bool> _filters = {
     'gluten': false,
     'vegetarian': false,
@@ -23,9 +25,11 @@ class _MyAppState extends State<MyApp> {
     'lactose': false,
   };
 
-  List<Meal> _availableMeals = DUMMY_MEALS;
-  List<Meal> _favoriteMeals = [];
+  List<Meal> _availableMeals = DUMMY_MEALS; // get the list of all the available meals
+  List<Meal> _favoriteMeals = []; // stores the favorite meal in a array
 
+// validate if the switch button has been clicked on the
+// settings screen, and bring only whawt the user wants
   void _setFilters(Map<String, bool> filterData) {
     setState(() {
       _filters = filterData;
@@ -49,6 +53,7 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  // checks if a meal has been added to favourite and also deleted
   void _toggleFavorite(String mealId) {
     final existingIndex =
         _favoriteMeals.indexWhere((meal) => meal.id == mealId);
@@ -64,6 +69,7 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  // check if the meal is favorite
   bool _isMealFavorite(String id) {
     return _favoriteMeals.any((meal) => meal.id == id);
   }
@@ -93,6 +99,7 @@ class _MyAppState extends State<MyApp> {
       // home: CategoriesScreen(),
       initialRoute: '/',
       routes: {
+        // registers all the screen
         '/': (ctx) => TabsScreen(_favoriteMeals),
         CategoryMealsScreen.routeName: (ctx) =>
         CategoryMealsScreen(_availableMeals),
